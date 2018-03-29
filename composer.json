@@ -1,0 +1,22 @@
+{
+    "name": "matvik/yii2-model-gallery",
+    "description": "This extension implements the behavior and widget for a set of images related to a particular model (product, user, etc.).",
+    "type": "yii2-extension",
+    "keywords": ["yii2","extension","gallery","images","widget","behavior","ajax","form"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Matviy Shkotnyar",
+            "email": "matvikx@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "yiisoft/yii2": "~2.0.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "matvik\\modelGallery\\": "src"
+        }
+    }
+}
