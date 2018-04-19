@@ -1,0 +1,23 @@
+.form-gallery-list {
+    list-style-type: none;
+    margin: 0; 
+    padding: 0; 
+    width: 100%; 
+}
+
+.form-gallery-list li { 
+    margin: 3px 3px 3px 0;
+    padding: 1px;
+    float: left;
+}
+
+input#gallery-form-widget-input-files {
+    display: none;
+}
+
+#gallery-form-widget-input-files-trigger {
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+}
