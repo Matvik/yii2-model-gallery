@@ -4,6 +4,7 @@ namespace matvik\modelGallery;
 
 use yii\base\Widget;
 use matvik\modelGallery\GalleryFormWidgetAsset;
+use Yii;
 
 /**
  * Form gallery widget. New gallery state will be submitted when submiting form.
@@ -55,20 +56,44 @@ class GalleryFormWidget extends Widget
      * Error message for max files uploaded.
      * @var string
      */
-    public $maxFilesUploadedErrorMessage = 'Error! Maximum number of files should not exceed {number}';
+    public $maxFilesUploadedErrorMessage;
     
     /**
      * Error message for max files total.
      * @var string
      */
-    public $maxFilesTotalErrorMessage = 'Error! Maximum total number of images should not exceed {number}';
+    public $maxFilesTotalErrorMessage;
     
     /**
      * Whether render new images input
      * @var boolean
      */
     public $renderInput = true;
-
+    
+    /**
+     * @inheritDoc
+     */
+    public function init()
+    {
+        parent::init();
+        Yii::$app->i18n->translations['model-gallery'] = [
+            'class' => 'yii\i18n\PhpMessageSource',
+            'sourceLanguage' => 'en-US',
+            'basePath' => '@matvik/modelGallery/messages',
+            'fileMap' => [
+                'model-gallery' => 'default.php',
+            ],
+        ];
+        if (!$this->maxFilesUploadedErrorMessage) {
+            $this->maxFilesUploadedErrorMessage =  Yii::t('model-gallery', 'Error! Maximum number of files should not exceed {number}');
+        }
+        if (!$this->maxFilesTotalErrorMessage) {
+            $this->maxFilesTotalErrorMessage =  Yii::t('model-gallery', 'Error! Maximum total number of images should not exceed {number}');
+        }
+        $this->maxFilesUploadedErrorMessage = str_replace('{number}', $this->maxFilesUploaded, $this->maxFilesUploadedErrorMessage);
+        $this->maxFilesTotalErrorMessage = str_replace('{number}', $this->maxFilesTotal, $this->maxFilesTotalErrorMessage);
+    }
+    
     /**
      * @inheritDoc
      */
@@ -97,9 +122,6 @@ class GalleryFormWidget extends Widget
                 ]
             ];
         }
-        
-        $this->maxFilesUploadedErrorMessage = str_replace('{number}', $this->maxFilesUploaded, $this->maxFilesUploadedErrorMessage);
-        $this->maxFilesTotalErrorMessage = str_replace('{number}', $this->maxFilesTotal, $this->maxFilesTotalErrorMessage);
         
         return $this->render('formWidget', [
             'model' => $this->formModel,
