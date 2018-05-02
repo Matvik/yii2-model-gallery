@@ -39,18 +39,17 @@ jQuery(function () {
             var currentCount = list.data("current-images-count");
             var maxUploaded = list.data("max-files-uploaded");
             var maxTotal = list.data("max-files-total");
-            var maxUploadedError = list.data("max-files-uploaded-error");
-            var maxTotalError = list.data("max-files-total-error");
+            var messages = list.data("messages");
             
             // count validation
             if (maxUploaded > 0 && this.files.length > maxUploaded) {
                 clearInput();
-                alert(maxUploadedError);
+                jqAlert(messages.maxFilesUploadedError, 'red');
                 return;
             }
             if (maxTotal > 0 && (this.files.length + currentCount) > maxTotal) {
                 clearInput();
-                alert(maxTotalError);
+                jqAlert(messages.maxFilesTotalError, 'red');
                 return;
             }
             
@@ -78,7 +77,7 @@ jQuery(function () {
                     readers[i].readAsDataURL(file);
                 }
             } else {
-                alert("This browser does not support HTML5 FileReader.");
+                jqAlert(messages.maxFilesTotalError, "This browser does not support HTML5 FileReader.");
             }
         }
     });
@@ -94,5 +93,25 @@ jQuery(function () {
     function clearInput() {
         jQuery("#gallery-form-widget-input-files").val('');
         jQuery("#gallery-form-widget-input-files-list").empty();
+    }
+    
+    /**
+     * JQuery Alert
+     * @param {string} message
+     * @param {string} type
+     */
+    function jqAlert(message, type) {
+        jQuery.alert({
+            title: false,
+            content: '<b>' + message + '<b>',
+            type: type,
+            backgroundDismiss: 'OK',
+            buttons: {
+                OK: {
+                    btnClass: 'btn-' + type,
+                    keys: ['enter']
+                }
+            }
+        });
     }
 });

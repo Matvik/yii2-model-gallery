@@ -1,51 +1,42 @@
 <?php
-
 namespace matvik\modelGallery;
 
 use yii\base\Widget;
+use yii\helpers\Url;
 use yii\helpers\ArrayHelper;
-use matvik\modelGallery\GalleryFormWidgetAsset;
+use matvik\modelGallery\GalleryAjaxWidgetAsset;
 use Yii;
 
 /**
- * Form gallery widget. New gallery state will be submitted when submiting form.
+ * Ajax gallery widget.
  */
-class GalleryFormWidget extends Widget
+class GalleryAjaxWidget extends Widget
 {
-    
+
     /**
-     * Model associated with the form. Can be either ActiveRecord model 
-     * or separate form model with GalleryFormBehaviour attached.
-     * @var yii\base\Model
-     */
-    public $formModel;
-    
-    /**
-     * Active Record model with attached GalleryBehaviour. 
-     * If it is the same model as formModel, leave this field as null
+     * Active Record model with GalleryBehaviour attached. 
      * @var yii\db\ActiveRecord
      */
-    public $mainModel = null;
-    
+    public $model;
+
+    /**
+     * Action for ajax requests. Can be action array or URL string.
+     * @var string|array
+     */
+    public $action;
+
     /**
      * Image item width
      * @var integer
      */
     public $imageWidth = false;
-    
+
     /**
      * Image item height
      * @var integer
      */
     public $imageHeight = 200;
-    
-    /**
-     * The maximum number of images uploaded at one form submit. 
-     * 0 means unlimited.
-     * @var integer
-     */
-    public $maxFilesUploaded = 0;
-    
+
     /**
      * The maximum number of model images that can be riched.
      * 0 means unlimited.
@@ -54,23 +45,22 @@ class GalleryFormWidget extends Widget
     public $maxFilesTotal = 0;
     
     /**
-     * Whether render new images input
-     * @var boolean
-     */
-    public $renderInput = true;
-    
-    /**
      * Custom messages
      * @var string[]
      */
     public $messages = [];
-    
+
     /**
      * @inheritDoc
      */
     public function init()
     {
         parent::init();
+
+        if (is_array($this->action)) {
+            $this->action = Url::to($this->action);
+        }
+
         Yii::$app->i18n->translations['model-gallery'] = [
             'class' => 'yii\i18n\PhpMessageSource',
             'sourceLanguage' => 'en-US',
@@ -79,48 +69,50 @@ class GalleryFormWidget extends Widget
                 'model-gallery' => 'default.php',
             ],
         ];
-        
+
         $defaultMessages = [
-            'maxFilesUploadedError' => Yii::t('model-gallery', 'Error! Maximum number of files should not exceed {number}', ['number' => $this->maxFilesUploaded]),
             'maxFilesTotalError' => Yii::t('model-gallery', 'Error! Maximum total number of images should not exceed {number}', ['number' => $this->maxFilesTotal]),
-            'buttonLabelLoad' => Yii::t('model-gallery', 'Load'),
-            'buttonLabelClear' => Yii::t('model-gallery', 'Clear'),
+            'errorUpload' => Yii::t('model-gallery', 'Upload error'),
+            'errorOrder' => Yii::t('model-gallery', 'Error changing images order'),
+            'errorDelete' => Yii::t('model-gallery', 'Error deleting images'),
+            'confirmDelete' => Yii::t('model-gallery', 'Delete images?'),
+            'notSelected' => Yii::t('model-gallery', 'No images selected'),
+            'buttonLabelDelete' => Yii::t('model-gallery', 'Delete checked'),
+            'buttonLabelSelectAll' => Yii::t('model-gallery', 'Select all'),
+            'buttonLabelDeselectAll' => Yii::t('model-gallery', 'Deselect all'),
             'deleteCheckboxLabel' => Yii::t('model-gallery', 'Delete'),
         ];
         $this->messages = ArrayHelper::merge($defaultMessages, $this->messages);
     }
-    
+
     /**
      * @inheritDoc
      */
     public function run()
     {
-        if ($this->mainModel === null) {
-            $this->mainModel = $this->formModel;
-        }
-        GalleryFormWidgetAsset::register($this->view);
+        GalleryAjaxWidgetAsset::register($this->view);
         $wCss = $this->imageWidth ? "width: {$this->imageWidth}px;" : '';
         $hCss = $this->imageHeight ? "height: {$this->imageHeight}px;" : '';
         $this->view->registerCss(
-            ".form-gallery-list li { $wCss $hCss }"
+            ".ajax-gallery-list li { $wCss $hCss }"
         );
-        
+
         // sortable items
         $items = [];
-        foreach ($this->mainModel->galleryImages as $image) { 
+        foreach ($this->model->galleryImages as $image) {
             $items[] = [
-                'content' => $this->render('_formWidgetItem', [
+                'content' => $this->render('_ajaxWidgetItem', [
                     'image' => $image,
                 ]),
-                'options' =>  [
+                'options' => [
                     'data-image-id' => $image->id,
-                    'class' => 'ui-state-default ui-sortable-handle form-gallery-item',
+                    'class' => 'ui-state-default ui-sortable-handle ajax-gallery-item',
                 ]
             ];
         }
-        
-        return $this->render('formWidget', [
-            'items' => $items,
+
+        return $this->render('ajaxWidget', [
+                'items' => $items,
         ]);
     }
 }

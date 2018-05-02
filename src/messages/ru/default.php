@@ -8,4 +8,12 @@ return [
     'Load' => 'Загрузить',
     'Clear' => 'Очистить',
     'Delete' => 'Удалить',
+    'Error changing images order' => 'Ошибка при изменении порядка изображений',
+    'Error deleting images' => 'Ошибка удаления изображений',
+    'Delete checked' => 'Удалить выбранные',
+    'Delete images?' => 'Удалить изображения?',
+    'No images selected' => 'Сначала выберите изображения',
+    'Select all' => 'Выбрать все',
+    'Deselect all' => 'Снять выделение',
+    'Upload error' => 'Ошибка при загрузке',
 ];

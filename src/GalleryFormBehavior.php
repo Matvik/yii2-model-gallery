@@ -28,6 +28,13 @@ class GalleryFormBehavior extends Behavior
     public $maxFilesTotal = 0;
     
     /**
+     * Whether perform automatic calling of saveGallery() method after saving 
+     * Active Record model.
+     * @var boolean
+     */
+    public $autosave = true;
+    
+    /**
      * Attribute for uploaded image files
      * @var string
      */
@@ -51,7 +58,7 @@ class GalleryFormBehavior extends Behavior
     public function events()
     {
         $events = [];
-        if ($this->owner instanceof ActiveRecord) {
+        if ($this->autosave && $this->owner instanceof ActiveRecord) {
             $events[ActiveRecord::EVENT_AFTER_INSERT] = 'afterSave';
             $events[ActiveRecord::EVENT_AFTER_UPDATE] = 'afterSave';
         }
@@ -65,7 +72,7 @@ class GalleryFormBehavior extends Behavior
      */
     public function afterSave($event)
     {
-        if ($this->owner instanceof ActiveRecord && !$this->owner->hasErrors()) {
+        if ($this->autosave && $this->owner instanceof ActiveRecord && !$this->owner->hasErrors()) {
             $this->saveGallery($this->owner);
         }
     }

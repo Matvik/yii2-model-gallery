@@ -1,40 +1,37 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\Json;
 use yii\jui\Sortable;
 
 /* @var $this yii\web\View */
-/* @var $model yii\base\Model */
-/* @var $items string[] */
-/* @var $renderInput boolean */
-/* @var $itemWidth integer */
-/* @var $itemHeight integer */
-/* @var $maxFilesUploaded integer */
-/* @var $maxFilesTotal integer */
-/* @var $maxFilesUploadedErrorMessage string */
-/* @var $maxFilesTotalErrorMessage string */
+/* @var $items array */
+$messages = $this->context->messages;
+
 ?>
 
-<?= Sortable::widget([
+<?=
+Sortable::widget([
     'items' => $items,
     'options' => [
         'class' => 'form-gallery-list'
     ],
-]) ?>
-<?php if ($renderInput) : ?>
-<?= Html::activeFileInput($model, 'galleryImages[]', ['multiple' => true, 'id' => 'gallery-form-widget-input-files', 'accept' => 'image/*']) ?>
-<label id="gallery-form-widget-input-files-trigger" for="gallery-form-widget-input-files"><?= Yii::t('model-gallery', 'Load') ?></label>
-<button type="button" id="gallery-form-widget-input-files-clear"><?= Yii::t('model-gallery', 'Clear') ?></button>
-<ul id="gallery-form-widget-input-files-list" class="form-gallery-list" 
-    data-item-width="<?= $itemWidth ?>" data-item-height="<?= $itemHeight ?>"
-    data-current-images-count="<?= count($items) ?>"
-    data-max-files-uploaded="<?= $maxFilesUploaded ?>"
-    data-max-files-total="<?= $maxFilesTotal ?>"
-    data-max-files-uploaded-error="<?= $maxFilesUploadedErrorMessage ?>"
-    data-max-files-total-error="<?= $maxFilesTotalErrorMessage ?>">
-    
-</ul>
+])
+
+?>
+<?php if ($this->context->renderInput) : ?>
+    <?= Html::activeFileInput($this->context->formModel, 'galleryImages[]', ['multiple' => true, 'id' => 'gallery-form-widget-input-files', 'accept' => 'image/*']) ?>
+    <label id="gallery-form-widget-input-files-trigger" for="gallery-form-widget-input-files"><?= $messages['buttonLabelLoad'] ?></label>
+    <button type="button" id="gallery-form-widget-input-files-clear"><?= $messages['buttonLabelClear'] ?></button>
+    <ul id="gallery-form-widget-input-files-list" class="form-gallery-list" 
+        data-item-width="<?= $this->context->imageWidth ?>" data-item-height="<?= $this->context->imageHeight ?>"
+        data-current-images-count="<?= count($items) ?>"
+        data-max-files-uploaded="<?= $this->context->maxFilesUploaded ?>"
+        data-max-files-total="<?= $this->context->maxFilesTotal ?>"
+        data-messages='<?= Json::encode($messages) ?>'>
+
+    </ul>
 <?php endif ?>
 
-<?= Html::activeHiddenInput($model, 'galleryImagesDelete', ['id' => 'gallery-form-widget-input-deleting']) ?>
-<?= Html::activeHiddenInput($model, 'galleryImagesOrder', ['id' => 'gallery-form-widget-input-order']) ?>
+<?= Html::activeHiddenInput($this->context->formModel, 'galleryImagesDelete', ['id' => 'gallery-form-widget-input-deleting']) ?>
+<?= Html::activeHiddenInput($this->context->formModel, 'galleryImagesOrder', ['id' => 'gallery-form-widget-input-order']) ?>

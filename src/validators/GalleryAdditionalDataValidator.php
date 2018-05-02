@@ -12,6 +12,13 @@ class GalleryAdditionalDataValidator extends Validator
 {
 
     /**
+     * Set true if data is in array format. In other case it will be decoded 
+     * from JSON.
+     * @var boolean
+     */
+    public $isArray = false;
+
+    /**
      * @inheritdoc
      */
     public function init()
@@ -32,9 +39,13 @@ class GalleryAdditionalDataValidator extends Validator
         }
 
         $valid = true;
-        $data = Json::decode($value);
-        if (!(json_last_error() == JSON_ERROR_NONE)) {
-            $valid = false;
+        if (!$this->isArray) {
+            $data = Json::decode($value);
+            if (!(json_last_error() == JSON_ERROR_NONE)) {
+                $valid = false;
+            }
+        } else {
+            $data = $value;
         }
         foreach ($data as $id) {
             if (!is_numeric($id) || $id < 0) {
