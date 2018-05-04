@@ -1,5 +1,9 @@
 Yii 2 model images gallery - behavior and widget
 ================================================
+
+<span style="color:red">UNDER ACTIVE DEVELOPMENT</span>
+-------------------------------------------------------
+
 This extension implements the behavior and widget for a set of images related to a particular model (product, user, etc.).
 
 Installation

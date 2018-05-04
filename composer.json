@@ -7,7 +7,8 @@
     "authors": [
         {
             "name": "Matviy Shkotnyar",
-            "email": "matvikx@gmail.com"
+            "email": "matvikx@gmail.com",
+            "role": "Developer"
         }
     ],
     "minimum-stability": "stable",

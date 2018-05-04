@@ -11,6 +11,7 @@ use yii\imagine\Image as ImagineImage;
 use Imagine\Image\ImageInterface;
 use Imagine\Image\Box;
 use matvik\modelGallery\Image;
+use matvik\modelGallery\GalleryDefaultImageAsset;
 use Yii;
 
 class GalleryBehavior extends Behavior {
@@ -66,6 +67,12 @@ class GalleryBehavior extends Behavior {
      */
     public $tempDir;
     
+    /**
+     * Default images in terms of 'size' => 'url' array
+     * @var array
+     */
+    public $defaultImages = [];
+
     /**
      * @param ActiveRecord $owner
      */
@@ -153,6 +160,33 @@ class GalleryBehavior extends Behavior {
     }
     
     //========================= PUBLIC METHODS =================================
+    
+    /**
+     * Returns first model image URL for size. 
+     * If no images found for this model - returns default image, defined in 
+     * defaultImages array. 
+     * If no default image defined for this size - returns default image from 
+     * extension folder.
+     * 
+     * @param string $size
+     * @return string
+     */
+    public function getGalleryImageFirstUrl($size = 'preview')
+    {
+        $firstImage = $this->owner->galleryImageFirst;
+        if ($firstImage) {
+            return $firstImage->getUrl($size);
+        }
+        
+        // default image
+        if (array_key_exists($size, $this->defaultImages)) {
+            return $this->defaultImages[$size];
+        }
+        
+        // default image from extension folder
+        $bundle = GalleryDefaultImageAsset::register(Yii::$app->view);
+        return $bundle->baseUrl . '/default.png';
+    }
     
     /**
      * Saves new images from UploadedFile or existed files sources.

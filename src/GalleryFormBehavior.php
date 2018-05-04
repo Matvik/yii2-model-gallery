@@ -38,7 +38,7 @@ class GalleryFormBehavior extends Behavior
      * Attribute for uploaded image files
      * @var string
      */
-    public $galleryImages;
+    public $galleryImageFiles;
 
     /**
      * Attribute for deleting images list
@@ -88,10 +88,10 @@ class GalleryFormBehavior extends Behavior
         // loading params manually
         $this->owner->galleryImagesDelete = ArrayHelper::getValue($request->post($this->owner->formName()), 'galleryImagesDelete');
         $this->owner->galleryImagesOrder = ArrayHelper::getValue($request->post($this->owner->formName()), 'galleryImagesOrder');
-        $this->owner->galleryImages = \yii\web\UploadedFile::getInstances($this->owner, 'galleryImages');
+        $this->owner->galleryImageFiles = \yii\web\UploadedFile::getInstances($this->owner, 'galleryImageFiles');
         
         $currentCount = $mainModel->getGalleryImages()->count();
-        $filesCount = count($this->owner->galleryImages);
+        $filesCount = count($this->owner->galleryImageFiles);
         if ($filesCount > 0) {
             if (((int)$this->maxFilesUploaded > 0 && $filesCount > (int)$this->maxFilesUploaded) || ((int)$this->maxFilesTotal > 0 && ($currentCount + $filesCount) > (int)$this->maxFilesTotal)) {
                 throw new \Exception('Max images count error');
@@ -101,8 +101,8 @@ class GalleryFormBehavior extends Behavior
         if ($validateAttributes) {
             $validators = $this->owner->getValidators();
             $validators->append(Validator::createValidator('matvik\modelGallery\validators\GalleryAdditionalDataValidator', $this->owner, ['galleryImagesDelete', 'galleryImagesOrder']));
-            $validators->append(Validator::createValidator('image', $this->owner, ['galleryImages'], ['maxFiles' => 0]));
-            if (!$this->owner->validate(['galleryImages', 'galleryImagesDelete', 'galleryImagesOrder'], false)) {
+            $validators->append(Validator::createValidator('image', $this->owner, ['galleryImageFiles'], ['maxFiles' => 0]));
+            if (!$this->owner->validate(['galleryImageFiles', 'galleryImagesDelete', 'galleryImagesOrder'], false)) {
                 return;
             }
         }
@@ -116,12 +116,12 @@ class GalleryFormBehavior extends Behavior
         if (is_array($deletingImages) && count($deletingImages) > 0) {
             $mainModel->deleteImages($deletingImages);
         }
-        if (is_array($this->owner->galleryImages) && count($this->owner->galleryImages) > 0) {
-            $mainModel->saveImages($this->owner->galleryImages);
+        if (is_array($this->owner->galleryImageFiles) && count($this->owner->galleryImageFiles) > 0) {
+            $mainModel->saveImages($this->owner->galleryImageFiles);
         }
 
         // clear attribute
-        $this->owner->galleryImages = null;
+        $this->owner->galleryImageFiles = null;
         // unset main model gallery images relation for showing updated images in this request
         unset($mainModel->galleryImages);
     }
