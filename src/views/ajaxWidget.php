@@ -31,12 +31,18 @@ Sortable::widget([
 
 ?>
 <?php Pjax::end(); ?>
-<button type="button" class="ajax-gallery-delete-button"><?= $messages['buttonLabelDelete'] ?></button>
-<button type="button" class="ajax-gallery-select-all-button"><?= $messages['buttonLabelSelectAll'] ?></button>
-<button type="button" class="ajax-gallery-clear-selection-button"><?= $messages['buttonLabelDeselectAll'] ?></button>
+<div class="buttons-wrapper">
+    <button type="button" class="ajax-gallery-delete-button red-button"><?= $messages['buttonLabelDelete'] ?></button>
+    <button type="button" class="ajax-gallery-select-all-button"><?= $messages['buttonLabelSelectAll'] ?></button>
+    <button type="button" class="ajax-gallery-clear-selection-button yellow-button"><?= $messages['buttonLabelDeselectAll'] ?></button>
+</div>
+
 
 <div id="gallery-ajax-widget-drop-area">
-  <h3>Drag and Drop Files Here<h3/>
-  <input type="file" title="Click to add Files">
-  <progress class="upload-progress" value="0" max="100" style="display: none;"></progress>
+    <h3>Drag and Drop Files Here</h3>
+    <div class="input-file-button">
+        <span>Click to add Files</span>
+        <input type="file" title="Click to add Files">
+    </div>
+    <progress class="upload-progress" value="0" max="100" style="display: none;"></progress>
 </div>

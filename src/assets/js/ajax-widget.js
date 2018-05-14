@@ -40,7 +40,13 @@ jQuery(function () {
             onComplete: function () {
                 progress.val(0);
                 progress.hide();
-            }
+            },
+            onDragEnter: function(){
+              this.addClass('active');
+            },
+            onDragLeave: function(){
+              this.removeClass('active');
+            },
         });
     });
 
@@ -90,6 +96,11 @@ jQuery(function () {
         jQuery.each(items, function () {
             if (jQuery(this).find("input:checked").length) {
                 data.push(jQuery(this).data("image-id"));
+                jQuery(this).addClass("checked");
+            }
+
+            else {
+                jQuery(this).removeClass("checked");
             }
         });
 
@@ -143,6 +154,7 @@ jQuery(function () {
         var items = list.find(".ajax-gallery-item");
         jQuery.each(items, function () {
             jQuery(this).find("input[type=checkbox]").prop("checked", true);
+            jQuery(this).addClass('checked');
         });
     });
 
@@ -155,6 +167,7 @@ jQuery(function () {
         var items = list.find(".ajax-gallery-item");
         jQuery.each(items, function () {
             jQuery(this).find("input[type=checkbox]").prop("checked", false);
+            jQuery(this).removeClass('checked');
         });
     });
 

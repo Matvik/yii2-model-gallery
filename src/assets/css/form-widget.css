@@ -1,23 +1,123 @@
 .form-gallery-list {
     list-style-type: none;
-    margin: 0; 
+    margin: 15px -7.5px 0px -7.5px;
     padding: 0; 
     width: 100%; 
+    overflow: hidden;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
+
 .form-gallery-list li { 
-    margin: 3px 3px 3px 0;
-    padding: 1px;
+    margin: 0px 0px 15px 0px;
+    padding: 0 7.5px;
     float: left;
+    position: relative;
+}
+
+.form-gallery-list li img {
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: 3px;
+}
+
+.delete-image-label {
+    position: absolute;
+    right: 15px;
+    bottom: 7.5px;
+    background-color: #007BFF;
+    color: #fff;
+    font-weight: 400;
+    margin: 0;
+    padding: 5px 30px 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+.form-gallery-item.checked .delete-image-label {
+    background-color: #FF0000;
+    transition: all 0.3s ease;
+}
+
+.delete-image-label input[type="checkbox"] {
+    display: none;
+}
+
+.delete-image-label .checkmark {
+    position: absolute;
+    top: 7.5px;
+    right: 7.5px;
+    height: 15px;
+    width: 15px;
+    background-color: #eee;
+    transition: all 0.3s ease;
+}
+
+.delete-image-label .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.delete-image-label input:checked ~ .checkmark {
+    background-color: #FF0000;
+}
+
+.delete-image-label input:checked ~ .checkmark:after {
+    display: block;
+}
+
+.delete-image-label .checkmark:after {
+    left: 5px;
+    top: 0px;
+    width: 7px;
+    height: 12px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.ui-state-default {
+    border: none;
+    background: none;
 }
 
 input#gallery-form-widget-input-files {
     display: none;
 }
 
-#gallery-form-widget-input-files-trigger {
-    border: 1px solid #ccc;
-    display: inline-block;
-    padding: 6px 12px;
+.buttons-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.buttons-wrapper label, .buttons-wrapper button {
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 3px;
+    padding: 5px 15px;
+    margin: 5px;
     cursor: pointer;
+    font-size: 16px;
+    font-weight: 400;
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+.buttons-wrapper label:hover, .buttons-wrapper button:hover, .buttons-wrapper label:focus, .buttons-wrapper button:focus{
+    background-color: #0062cc;
+    outline: none;
+}
+
+.buttons-wrapper .red-button {
+    background-color: #FF0000;
+}
+
+.buttons-wrapper .red-button:hover, .buttons-wrapper .red-button:focus {
+    background-color: #BB0000;
+    outline: none;
 }

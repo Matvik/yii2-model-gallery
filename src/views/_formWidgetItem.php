@@ -12,4 +12,5 @@ use yii\helpers\Html;
 <label for="delete-image-checkbox-<?= $image->id ?>" class="delete-image-label"><?= $this->context->messages['deleteCheckboxLabel'] ?>
     <input type="checkbox"
            class="delete-image-checkbox" id="delete-image-checkbox-<?= $image->id ?>">
+	<span class="checkmark"></span>
 </label>

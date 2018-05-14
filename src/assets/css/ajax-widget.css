@@ -1,12 +1,168 @@
 .ajax-gallery-list {
     list-style-type: none;
-    margin: 0; 
+    margin: 15px -7.5px 0px -7.5px;
     padding: 0; 
     width: 100%; 
+    overflow: hidden;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
+
 .ajax-gallery-list li { 
-    margin: 3px 3px 3px 0;
-    padding: 1px;
+    margin: 0px 0px 15px 0px;
+    padding: 0 7.5px;
     float: left;
+    position: relative;
+}
+
+.ajax-gallery-list li img {
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: 3px;
+}
+
+.delete-image-label {
+    position: absolute;
+    right: 15px;
+    bottom: 7.5px;
+    background-color: #007BFF;
+    color: #fff;
+    font-weight: 400;
+    margin: 0;
+    padding: 5px 30px 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.ajax-gallery-item.checked .delete-image-label {
+    background-color: #FF0000;
+    transition: all 0.3s ease;
+}
+
+.delete-image-label input[type="checkbox"] {
+    display: none;
+}
+
+.delete-image-label .checkmark {
+    position: absolute;
+    top: 7.5px;
+    right: 7.5px;
+    height: 15px;
+    width: 15px;
+    background-color: #eee;
+    transition: all 0.3s ease;
+}
+
+.delete-image-label .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.delete-image-label input:checked ~ .checkmark {
+    background-color: #FF0000;
+}
+
+.delete-image-label input:checked ~ .checkmark:after {
+    display: block;
+}
+
+.delete-image-label .checkmark:after {
+    left: 5px;
+    top: 0px;
+    width: 7px;
+    height: 12px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.ui-state-default {
+    border: none;
+    background: none;
+}
+
+
+
+.buttons-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.buttons-wrapper label, .buttons-wrapper button, #gallery-ajax-widget-drop-area .input-file-button {
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 3px;
+    padding: 5px 15px;
+    margin: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 400;
+    transition: all 0.3s ease;
+}
+
+.buttons-wrapper label:hover, .buttons-wrapper button:hover, #gallery-ajax-widget-drop-area .input-file-button:hover, .buttons-wrapper label:focus, .buttons-wrapper button:focus, #gallery-ajax-widget-drop-area .input-file-button:focus {
+    background-color: #0062cc;
+}
+
+.buttons-wrapper .red-button {
+    background-color: #FF0000;
+}
+.buttons-wrapper .red-button:hover, .buttons-wrapper .red-button:focus {
+    background-color: #BB0000;
+    outline: none;
+}
+
+.buttons-wrapper .yellow-button {
+    background-color: #F0AD4E;
+}
+.buttons-wrapper .yellow-button:hover, .buttons-wrapper .yellow-button:focus {
+    background-color: #ec971f;
+    outline: none;
+}
+
+#gallery-ajax-widget-drop-area {
+    height: 250px;
+    margin-top: 15px;
+    border: 3px dashed #007bff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255,255,255,1);
+    transition: all 0.3s ease;
+}
+
+#gallery-ajax-widget-drop-area input {
+	position: absolute;
+	top: 0;
+	right: 0;
+    bottom: 0;
+	margin: 0;
+	border: solid transparent;
+	opacity: 0;
+	cursor: pointer;
+}
+
+#gallery-ajax-widget-drop-area .input-file-button {
+    position: relative;
+    cursor: pointer;
+    padding: 15px 30px;
+}
+#gallery-ajax-widget-drop-area .input-file-button:hover {
+	cursor: pointer;
+}
+
+#gallery-ajax-widget-drop-area .upload-progress {
+	margin-top: 15px;
+}
+
+#gallery-ajax-widget-drop-area.active {
+    background-color: rgba(41,144,252,0.5);
+    border: 3px dashed transparent;
 }
