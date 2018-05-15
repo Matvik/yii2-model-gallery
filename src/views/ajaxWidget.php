@@ -39,10 +39,11 @@ Sortable::widget([
 
 
 <div id="gallery-ajax-widget-drop-area">
-    <h3>Drag and Drop Files Here</h3>
+    <h3><?= $messages['dropAreaLabel'] ?></h3>
+    <h4><?= $messages['dropAreaLabelOr'] ?></h4>
     <div class="input-file-button">
-        <span>Click to add Files</span>
-        <input type="file" title="Click to add Files">
+        <span><?= $messages['buttonAddImages'] ?></span>
+        <input type="file" title="<?= $messages['buttonAddImages'] ?>">
     </div>
     <progress class="upload-progress" value="0" max="100" style="display: none;"></progress>
 </div>

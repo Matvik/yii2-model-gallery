@@ -166,3 +166,7 @@
     background-color: rgba(41,144,252,0.5);
     border: 3px dashed transparent;
 }
+
+#gallery-ajax-widget-drop-area h4 {
+    color: grey;
+}

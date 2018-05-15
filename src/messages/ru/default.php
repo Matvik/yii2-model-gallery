@@ -16,4 +16,7 @@ return [
     'Select all' => 'Выбрать все',
     'Deselect all' => 'Снять выделение',
     'Upload error' => 'Ошибка при загрузке',
+    'Select from folder' => 'Выберите из папки',
+    'or' => 'или',
+    'Drag and Drop Files Here' => 'Перетащите файлы сюда',
 ];

@@ -81,6 +81,9 @@ class GalleryAjaxWidget extends Widget
             'buttonLabelSelectAll' => Yii::t('model-gallery', 'Select all'),
             'buttonLabelDeselectAll' => Yii::t('model-gallery', 'Deselect all'),
             'deleteCheckboxLabel' => Yii::t('model-gallery', 'Delete'),
+            'dropAreaLabel' => Yii::t('model-gallery', 'Drag and Drop Files Here'),
+            'dropAreaLabelOr' => Yii::t('model-gallery', 'or'),
+            'buttonAddImages' => Yii::t('model-gallery', 'Select from folder'),
         ];
         $this->messages = ArrayHelper::merge($defaultMessages, $this->messages);
     }
