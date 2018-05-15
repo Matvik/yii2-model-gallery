@@ -19,23 +19,25 @@ jQuery(function () {
         var input = jQuery("#gallery-form-widget-input-deleting");
         var items = jQuery(".form-gallery-list .form-gallery-item");
 
-
-
-
-
         var data = [];
         jQuery.each(items, function () {
             if (jQuery(this).find("input.delete-image-checkbox:checkbox:checked").length) {
                 data.push(jQuery(this).data("image-id"));
-                jQuery(this).addClass('checked');
             }
-
-            else {
-                jQuery(this).removeClass("checked");
-            }
-
         });
         input.val(JSON.stringify(data));
+    });
+    
+    /**
+     * Change ckeckbox color
+     */
+    jQuery(document).on("change", ".form-gallery-list .delete-image-checkbox", function (event, ui) {
+        var item = jQuery(this).closest(".form-gallery-item");
+        if(jQuery(this).is(':checked')) {
+            item.addClass("checked");
+        } else {
+            item.removeClass("checked");
+        }
     });
 
     /**

@@ -96,11 +96,6 @@ jQuery(function () {
         jQuery.each(items, function () {
             if (jQuery(this).find("input:checked").length) {
                 data.push(jQuery(this).data("image-id"));
-                jQuery(this).addClass("checked");
-            }
-
-            else {
-                jQuery(this).removeClass("checked");
             }
         });
 
@@ -143,6 +138,18 @@ jQuery(function () {
                 }
             }
         });
+    });
+    
+    /**
+     * Change ckeckbox color
+     */
+    jQuery(document).on("change", ".ajax-gallery-list .delete-image-checkbox", function (event, ui) {
+        var item = jQuery(this).closest(".ajax-gallery-item");
+        if(jQuery(this).is(':checked')) {
+            item.addClass("checked");
+        } else {
+            item.removeClass("checked");
+        }
     });
 
     /**
