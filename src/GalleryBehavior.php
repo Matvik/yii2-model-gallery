@@ -33,18 +33,19 @@ class GalleryBehavior extends Behavior {
      * @note    'preview' & 'original' versions names are reserved for image preview in widgets
      *          and original image files, if it is required - you can override them.
      * @example
-     * [
-    *  'small' => function ($img) {
-    *      return $img->thumbnail(new \Imagine\Image\Box(200, 200));
-    *  },
-     *  'medium' => function ($img) {
-     *      $dstSize = $img->getSize();
-     *      $maxWidth = 800;
-     *      if ($dstSize->getWidth() > $maxWidth) {
-     *          $dstSize = $dstSize->widen($maxWidth);
-     *      }
-     *      return $img->resize($dstSize);
-     * ]
+     * 'sizes' => [
+    *                'small' => function ($img) {
+    *                   return $img->thumbnail(new \Imagine\Image\Box(200, 200));
+    *                },
+     *               'medium' => function ($img) {
+     *                  $dstSize = $img->getSize();
+     *                  $maxWidth = 800;
+     *                  if ($dstSize->getWidth() > $maxWidth) {
+     *                      $dstSize = $dstSize->widen($maxWidth);
+     *                  }
+     *                  return $img->resize($dstSize);
+     *              }
+     *          ],
      */
     public $sizes;
     
@@ -109,11 +110,12 @@ class GalleryBehavior extends Behavior {
     /**
      * Image models relation
      * 
+     * @param string $category
      * @return \matvik\modelGallery\ImageQuery
      */
-    public function getGalleryImages() {
+    public function getGalleryImages($category = null) {
         return $this->owner->hasMany(Image::class, ['item_id' => 'id'])
-            ->where(['category' => $this->category])
+            ->where(['category' => ($category !== null ? $category : $this->category)])
             ->orderBy(['priority' => SORT_ASC])
             ->select([
                 '*', 
@@ -215,10 +217,12 @@ class GalleryBehavior extends Behavior {
     /**
      * Delete images with specific ids
      * @param array $ids 
+     * @param string $category
      * @return boolean
      */
-    public function deleteImages(array $ids) {
-        $images = $this->owner->galleryImages;
+    public function deleteImages(array $ids, $category = null) {
+        $images = ($category === null ? $this->owner->galleryImages
+            : $this->owner->getGalleryImages($category)->all());
         $images = ArrayHelper::index($images, 'id');
         $success = true;
         foreach ($ids as $id) {
@@ -268,12 +272,14 @@ class GalleryBehavior extends Behavior {
      *                              after changing basePath parameter of this behavior.
      * @param string $oldExtension  Old extension for behavior. Set this param 
      *                              after changing extension parameter of this behavior.
+     * @param string $oldCategory  Old category for behavior. Set this param 
+     *                              after changing category parameter of this behavior.
      * @return boolean
      */
-    public function regenerateImages($sourceSize = 'original', $oldBasePath = null, $oldExtension = null)
+    public function regenerateImages($sourceSize = 'original', $oldBasePath = null, $oldExtension = null, $oldCategory = null)
     {
         $success = true;
-        $oldImages = $this->owner->galleryImages;
+        $oldImages = $this->owner->getGalleryImages($oldCategory)->all();
         if ($oldBasePath === null) {
             $oldBasePath = $this->basePath;
         }
@@ -291,7 +297,7 @@ class GalleryBehavior extends Behavior {
             }
         }
         // deleting old images
-        if (!$this->deleteImages(ArrayHelper::getColumn($oldImages, 'id'))) {
+        if (!$this->owner->deleteImages(ArrayHelper::getColumn($oldImages, 'id'), $oldCategory)) {
             $success = false;
         }
         return $success;

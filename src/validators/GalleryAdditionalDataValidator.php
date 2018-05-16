@@ -48,7 +48,7 @@ class GalleryAdditionalDataValidator extends Validator
             $data = $value;
         }
         foreach ($data as $id) {
-            if (!is_numeric($id) || $id < 0) {
+            if (!is_numeric($id) || $id < 0 || (string)(int)$id != $id) {
                 $valid = false;
             }
         }
