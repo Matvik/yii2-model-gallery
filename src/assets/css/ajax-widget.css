@@ -4,9 +4,14 @@
     padding: 0; 
     width: 100%; 
     overflow: hidden;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
 }
 
 
@@ -37,6 +42,8 @@
 
 .ajax-gallery-item.checked .delete-image-label {
     background-color: #d9534f;
+    -webkit-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
     transition: all 0.3s ease;
 }
 
@@ -51,12 +58,16 @@
     height: 15px;
     width: 15px;
     background-color: #eee;
+    -webkit-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
     transition: all 0.3s ease;
 }
 
 .delete-image-label .checkmark:after {
     content: "";
     position: absolute;
+    -webkit-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
     transition: all 0.3s ease;
     opacity: 0;
 }
@@ -90,9 +101,14 @@
 
 
 .buttons-wrapper {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
 }
 
 .buttons-wrapper label, .buttons-wrapper button, #gallery-ajax-widget-drop-area .input-file-button {
@@ -105,6 +121,8 @@
     cursor: pointer;
     font-size: 16px;
     font-weight: 400;
+    -webkit-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
     transition: all 0.3s ease;
 }
 
@@ -132,23 +150,34 @@
     height: 250px;
     margin-top: 15px;
     border: 3px dashed #337ab7;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
     background-color: rgba(255,255,255,1);
+    -webkit-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
     transition: all 0.3s ease;
 }
 
 #gallery-ajax-widget-drop-area input {
-	position: absolute;
-	top: 0;
-	right: 0;
+    position: absolute;
+    top: 0;
+    right: 0;
     bottom: 0;
-	margin: 0;
-	border: solid transparent;
-	opacity: 0;
-	cursor: pointer;
+    margin: 0;
+    border: solid transparent;
+    opacity: 0;
+    cursor: pointer;
 }
 
 #gallery-ajax-widget-drop-area .input-file-button {
@@ -157,7 +186,7 @@
     padding: 15px 30px;
 }
 #gallery-ajax-widget-drop-area .input-file-button:hover {
-	cursor: pointer;
+    cursor: pointer;
 }
 
 

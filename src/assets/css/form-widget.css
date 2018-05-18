@@ -4,9 +4,14 @@
     padding: 0; 
     width: 100%; 
     overflow: hidden;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
 }
 
 
@@ -36,6 +41,8 @@
 }
 .form-gallery-item.checked .delete-image-label {
     background-color: #d9534f;
+    -webkit-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
     transition: all 0.3s ease;
 }
 
@@ -50,12 +57,16 @@
     height: 15px;
     width: 15px;
     background-color: #eee;
+    -webkit-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
     transition: all 0.3s ease;
 }
 
 .delete-image-label .checkmark:after {
     content: "";
     position: absolute;
+    -webkit-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
     transition: all 0.3s ease;
     opacity: 0;
 }
@@ -90,9 +101,14 @@ input#gallery-form-widget-input-files {
 }
 
 .buttons-wrapper {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
 }
 
 .buttons-wrapper label, .buttons-wrapper button {
@@ -105,6 +121,8 @@ input#gallery-form-widget-input-files {
     cursor: pointer;
     font-size: 16px;
     font-weight: 400;
+    -webkit-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
     transition: all 0.3s ease;
     outline: none;
 }
