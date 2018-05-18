@@ -58,17 +58,17 @@
     height: 15px;
     width: 15px;
     background-color: #eee;
-    -webkit-transition: all 0.3s ease;
-    -o-transition: all 0.3s ease;
-    transition: all 0.3s ease;
+    -webkit-transition: all 0.1s ease;
+    -o-transition: all 0.1s ease;
+    transition: all 0.1s ease;
 }
 
 .delete-image-label .checkmark:after {
     content: "";
     position: absolute;
-    -webkit-transition: all 0.3s ease;
-    -o-transition: all 0.3s ease;
-    transition: all 0.3s ease;
+    -webkit-transition: all 0.1s ease;
+    -o-transition: all 0.1s ease;
+    transition: all 0.1s ease;
     opacity: 0;
 }
 
@@ -167,6 +167,7 @@
     -webkit-transition: all 0.3s ease;
     -o-transition: all 0.3s ease;
     transition: all 0.3s ease;
+    padding: 15px;
 }
 
 #gallery-ajax-widget-drop-area input {
@@ -197,13 +198,14 @@
     width: 273px;
     display: block;
     border: 0 none;
-    background: #337ab7;
+    background: #fff;
+    border: 2px solid #337ab7;
     border-radius: 3px;
     padding: 3px;
 }
 #gallery-ajax-widget-drop-area progress::-moz-progress-bar {
     border-radius: 3px;
-    background: #FFF;
+    background: #337ab7;
   
 }
 #gallery-ajax-widget-drop-area progress::-webkit-progress-bar {
@@ -211,7 +213,7 @@
 }  
 #gallery-ajax-widget-drop-area progress::-webkit-progress-value {  
     border-radius: 3px;
-    background: #FFF;
+    background: #337ab7;
 } 
 
 
