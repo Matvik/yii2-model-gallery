@@ -26,7 +26,7 @@
     position: absolute;
     right: 15px;
     bottom: 7.5px;
-    background-color: #007BFF;
+    background-color: #337ab7;
     color: #fff;
     font-weight: 400;
     margin: 0;
@@ -36,7 +36,7 @@
 }
 
 .ajax-gallery-item.checked .delete-image-label {
-    background-color: #FF0000;
+    background-color: #d9534f;
     transition: all 0.3s ease;
 }
 
@@ -57,15 +57,17 @@
 .delete-image-label .checkmark:after {
     content: "";
     position: absolute;
-    display: none;
+    transition: all 0.3s ease;
+    opacity: 0;
 }
 
 .delete-image-label input:checked ~ .checkmark {
-    background-color: #FF0000;
+    background-color: #d9534f;
 }
 
 .delete-image-label input:checked ~ .checkmark:after {
-    display: block;
+
+    opacity: 1;
 }
 
 .delete-image-label .checkmark:after {
@@ -95,7 +97,7 @@
 
 .buttons-wrapper label, .buttons-wrapper button, #gallery-ajax-widget-drop-area .input-file-button {
     color: #fff;
-    background-color: #007bff;
+    background-color: #337ab7;
     border: none;
     border-radius: 3px;
     padding: 5px 15px;
@@ -107,11 +109,11 @@
 }
 
 .buttons-wrapper label:hover, .buttons-wrapper button:hover, #gallery-ajax-widget-drop-area .input-file-button:hover, .buttons-wrapper label:focus, .buttons-wrapper button:focus, #gallery-ajax-widget-drop-area .input-file-button:focus {
-    background-color: #0062cc;
+    background-color: #286090;
 }
 
 .buttons-wrapper .red-button {
-    background-color: #FF0000;
+    background-color: #d9534f;
 }
 .buttons-wrapper .red-button:hover, .buttons-wrapper .red-button:focus {
     background-color: #BB0000;
@@ -129,7 +131,7 @@
 #gallery-ajax-widget-drop-area {
     height: 250px;
     margin-top: 15px;
-    border: 3px dashed #007bff;
+    border: 3px dashed #337ab7;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -158,9 +160,32 @@
 	cursor: pointer;
 }
 
-#gallery-ajax-widget-drop-area .upload-progress {
-	margin-top: 15px;
+
+#gallery-ajax-widget-drop-area progress {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    height: 30px;
+    width: 273px;
+    display: block;
+    border: 0 none;
+    background: #337ab7;
+    border-radius: 3px;
+    padding: 3px;
 }
+#gallery-ajax-widget-drop-area progress::-moz-progress-bar {
+    border-radius: 3px;
+    background: #FFF;
+  
+}
+#gallery-ajax-widget-drop-area progress::-webkit-progress-bar {
+    background: transparent;
+}  
+#gallery-ajax-widget-drop-area progress::-webkit-progress-value {  
+    border-radius: 3px;
+    background: #FFF;
+} 
+
+
 
 #gallery-ajax-widget-drop-area.active {
     background-color: rgba(41,144,252,0.5);
