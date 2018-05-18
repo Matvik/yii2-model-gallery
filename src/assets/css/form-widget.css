@@ -26,7 +26,7 @@
     position: absolute;
     right: 15px;
     bottom: 7.5px;
-    background-color: #007BFF;
+    background-color: #337ab7;
     color: #fff;
     font-weight: 400;
     margin: 0;
@@ -35,7 +35,7 @@
     cursor: pointer;
 }
 .form-gallery-item.checked .delete-image-label {
-    background-color: #FF0000;
+    background-color: #d9534f;
     transition: all 0.3s ease;
 }
 
@@ -56,15 +56,16 @@
 .delete-image-label .checkmark:after {
     content: "";
     position: absolute;
-    display: none;
+    transition: all 0.3s ease;
+    opacity: 0;
 }
 
 .delete-image-label input:checked ~ .checkmark {
-    background-color: #FF0000;
+    background-color: #d9534f;
 }
 
 .delete-image-label input:checked ~ .checkmark:after {
-    display: block;
+    opacity: 1;
 }
 
 .delete-image-label .checkmark:after {
@@ -96,7 +97,7 @@ input#gallery-form-widget-input-files {
 
 .buttons-wrapper label, .buttons-wrapper button {
     color: #fff;
-    background-color: #007bff;
+    background-color: #337ab7;
     border: none;
     border-radius: 3px;
     padding: 5px 15px;
@@ -109,15 +110,15 @@ input#gallery-form-widget-input-files {
 }
 
 .buttons-wrapper label:hover, .buttons-wrapper button:hover, .buttons-wrapper label:focus, .buttons-wrapper button:focus{
-    background-color: #0062cc;
+    background-color: #286090;
     outline: none;
 }
 
 .buttons-wrapper .red-button {
-    background-color: #FF0000;
+    background-color: #d9534f;
 }
 
 .buttons-wrapper .red-button:hover, .buttons-wrapper .red-button:focus {
-    background-color: #BB0000;
+    background-color: #c9302c;
     outline: none;
 }
