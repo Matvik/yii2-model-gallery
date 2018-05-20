@@ -23,7 +23,7 @@ Sortable::widget([
     <?= Html::activeFileInput($this->context->formModel, 'galleryImageFiles[]', ['multiple' => true, 'id' => 'gallery-form-widget-input-files', 'accept' => 'image/*']) ?>
     <div class="buttons-wrapper">
         <label id="gallery-form-widget-input-files-trigger" for="gallery-form-widget-input-files"><?= $messages['buttonLabelLoad'] ?></label>
-        <button type="button" id="gallery-form-widget-input-files-clear" class="red-button"><?= $messages['buttonLabelClear'] ?></button>
+        <button type="button" id="gallery-form-widget-input-files-clear" class="red-button" style="display: none"><?= $messages['buttonLabelClear'] ?></button>
     </div>
     
     <ul id="gallery-form-widget-input-files-list" class="form-gallery-list" 

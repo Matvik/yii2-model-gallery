@@ -92,6 +92,9 @@ jQuery(function () {
             } else {
                 jqAlert(messages.maxFilesTotalError, "This browser does not support HTML5 FileReader.");
             }
+            jQuery("#gallery-form-widget-input-files-clear").show();
+        } else {
+            jQuery("#gallery-form-widget-input-files-clear").hide();
         }
     });
 
@@ -106,6 +109,7 @@ jQuery(function () {
     function clearInput() {
         jQuery("#gallery-form-widget-input-files").val('');
         jQuery("#gallery-form-widget-input-files-list").empty();
+        jQuery("#gallery-form-widget-input-files-clear").hide();
     }
     
     /**

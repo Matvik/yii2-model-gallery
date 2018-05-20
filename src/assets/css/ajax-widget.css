@@ -216,13 +216,11 @@
     background: #337ab7;
 } 
 
-
-
 #gallery-ajax-widget-drop-area.active {
     background-color: rgba(41,144,252,0.5);
     border: 3px dashed transparent;
 }
 
-#gallery-ajax-widget-drop-area h4 {
+#gallery-ajax-widget-drop-area h4.grey {
     color: grey;
 }

@@ -5,6 +5,7 @@ jQuery(function () {
      */
     jQuery(document).ready(function () {
         var uploader = jQuery("#gallery-ajax-widget-drop-area");
+        var savingLoader = jQuery("#gallery-ajax-widget-saving-loader");
         var list = uploader.closest(":has(.ajax-gallery-list)").find(".ajax-gallery-list");
         var url = list.data("action-url");
         url = url + "?action=" + list.data("param-upload") + "&modelId=" + list.data("model-id");
@@ -27,19 +28,26 @@ jQuery(function () {
             },
             onUploadProgress: function (id, percent) {
                 progress.val(percent);
+                if (percent == 100) {
+                    progress.hide();
+                    savingLoader.show();
+                }
             },
             onUploadSuccess: function () {
                 progress.val(0);
+                savingLoader.hide();
                 jQuery.pjax.reload({container: "#gallery-ajax-widget-pjax"});
             },
             onUploadError: function () {
                 progress.hide();
+                savingLoader.hide();
                 var errorMessage = list.data("messages").errorUpload;
                 jqAlert(errorMessage, 'red');
             },
             onComplete: function () {
                 progress.val(0);
                 progress.hide();
+                savingLoader.hide();
             },
             onDragEnter: function(){
               this.addClass('active');

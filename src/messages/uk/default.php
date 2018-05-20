@@ -19,4 +19,5 @@ return [
     'Select from folder' => 'Виберіть із папки',
     'or' => 'або',
     'Drag and Drop Files Here' => 'Перетягніть файли сюди',
+    'saving' => 'збереження',
 ];

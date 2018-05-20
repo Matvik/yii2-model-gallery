@@ -30,20 +30,23 @@ Sortable::widget([
 ])
 
 ?>
-<?php Pjax::end(); ?>
+<?php if (count($items) > 0) : ?>
 <div class="buttons-wrapper">
     <button type="button" class="ajax-gallery-delete-button red-button"><?= $messages['buttonLabelDelete'] ?></button>
     <button type="button" class="ajax-gallery-select-all-button"><?= $messages['buttonLabelSelectAll'] ?></button>
     <button type="button" class="ajax-gallery-clear-selection-button yellow-button"><?= $messages['buttonLabelDeselectAll'] ?></button>
 </div>
+<?php endif ?>
+<?php Pjax::end(); ?>
 
 
 <div id="gallery-ajax-widget-drop-area">
     <h3><?= $messages['dropAreaLabel'] ?></h3>
-    <h4><?= $messages['dropAreaLabelOr'] ?></h4>
+    <h4 class="grey"><?= $messages['dropAreaLabelOr'] ?></h4>
     <div class="input-file-button">
         <span><?= $messages['buttonAddImages'] ?></span>
         <input type="file" title="<?= $messages['buttonAddImages'] ?>">
     </div>
     <progress class="upload-progress" value="0" max="100" style="display: none;"></progress>
+    <h4 id="gallery-ajax-widget-saving-loader" style="display: none;"><?= $messages['loaderSaving'] ?></h4>
 </div>

@@ -84,6 +84,7 @@ class GalleryAjaxWidget extends Widget
             'dropAreaLabel' => Yii::t('model-gallery', 'Drag and Drop Files Here'),
             'dropAreaLabelOr' => Yii::t('model-gallery', 'or'),
             'buttonAddImages' => Yii::t('model-gallery', 'Select from folder'),
+            'loaderSaving' => Yii::t('model-gallery', 'saving'),
         ];
         $this->messages = ArrayHelper::merge($defaultMessages, $this->messages);
     }
