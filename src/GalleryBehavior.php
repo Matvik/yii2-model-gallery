@@ -69,6 +69,15 @@ class GalleryBehavior extends Behavior {
     public $tempDir;
     
     /**
+     * Image saving quality in terms of 'size' => 'url' array.
+     * This value will be passed to Imagine::save() function when saving images.
+     * Defaults to 100 for 'original' size and 90 for 'preview', and 90 for other
+     * sizes.
+     * @var array
+     */
+    public $quality = [];
+    
+    /**
      * Default images in terms of 'size' => 'url' array
      * @var array
      */
@@ -102,6 +111,14 @@ class GalleryBehavior extends Behavior {
                 /** @var ImageInterface $image */
                 return $image->thumbnail(new Box(200, 200));
             };
+        }
+        
+        // default quality
+        if (!isset($this->quality['original'])) {
+            $this->quality['original'] = 100;
+        }
+        if (!isset($this->quality['preview'])) {
+            $this->quality['preview'] = 90;
         }
     }
     
@@ -345,7 +362,8 @@ class GalleryBehavior extends Behavior {
             /** @var ImageInterface $img */
             $img = call_user_func($callback, $originalImage->copy());
             $path = $imageModel->getFilePath($size, true);
-            $img->save($path);
+            $quality = ArrayHelper::getValue($this->quality, $size, 90);
+            $img->save($path, ['quality' => $quality]);
         }
         
         // delete original image from temp folder
