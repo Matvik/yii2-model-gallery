@@ -29,7 +29,6 @@ jQuery(function () {
             onUploadProgress: function (id, percent) {
                 progress.val(percent);
                 if (percent == 100) {
-                    progress.hide();
                     savingLoader.show();
                 }
             },
@@ -39,7 +38,6 @@ jQuery(function () {
                 jQuery.pjax.reload({container: "#gallery-ajax-widget-pjax"});
             },
             onUploadError: function () {
-                progress.hide();
                 savingLoader.hide();
                 var errorMessage = list.data("messages").errorUpload;
                 jqAlert(errorMessage, 'red');
