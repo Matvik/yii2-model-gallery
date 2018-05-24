@@ -224,3 +224,33 @@
 #gallery-ajax-widget-drop-area h4.grey {
     color: grey;
 }
+
+
+.progress-block {
+    position: relative;
+}
+#gallery-ajax-widget-saving-loader {
+	font-size: 15px;
+    position: absolute;
+    right: 0;
+    left: 0;
+    text-align: center;
+    top: 9px;
+    padding: 3px 5px;
+    color: #fff;
+    border-radius: 3px;
+    -webkit-animation: text_fade 1s infinite;
+            animation: text_fade 1s infinite;
+}
+
+@-webkit-keyframes text_fade {
+  0%   { color: #fff; }
+  50%  { color: transparent; }
+  100%  { color: #fff; }
+}
+
+@keyframes text_fade {
+  0%   { color: #fff; }
+  50%  { color: transparent; }
+  100%  { color: #fff; }
+}

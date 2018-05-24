@@ -47,6 +47,9 @@ Sortable::widget([
         <span><?= $messages['buttonAddImages'] ?></span>
         <input type="file" title="<?= $messages['buttonAddImages'] ?>">
     </div>
-    <progress class="upload-progress" value="0" max="100" style="display: none;"></progress>
-    <h4 id="gallery-ajax-widget-saving-loader" style="display: none;"><?= $messages['loaderSaving'] ?></h4>
+    <div class="progress-block">
+		<progress class="upload-progress" value="0" max="100" style="display: none;"></progress>
+		<h4 id="gallery-ajax-widget-saving-loader" style="display: none;"><?= $messages['loaderSaving'] ?></h4>
+    </div>
+    
 </div>
