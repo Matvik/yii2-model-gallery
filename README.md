@@ -28,4 +28,5 @@ Usage
 -----
 
 Documentation is at:
-Ukrainian - [docs/GUIDE-uk.md](https://github.com/Matvik/yii2-model-gallery/blob/master/docs/GUIDE-uk.md.
+
+Ukrainian - [docs/GUIDE-uk.md](https://github.com/Matvik/yii2-model-gallery/blob/master/docs/GUIDE-uk.md).
