@@ -1,10 +1,8 @@
 Yii 2 model images gallery - behavior and widget
 ================================================
 
-<span style="color:red">UNDER ACTIVE DEVELOPMENT</span>
--------------------------------------------------------
-
 This extension implements the behavior and widget for a set of images related to a particular model (product, user, etc.).
+![Ajax Widget](https://raw.githubusercontent.com/Matvik/yii2-model-gallery/master/docs/ajax-widget.png)
 
 Installation
 ------------
@@ -14,7 +12,7 @@ The preferred way to install this extension is through [composer](http://getcomp
 Either run
 
 ```
-php composer.phar require --prefer-dist matvik/yii2-model-gallery "*"
+composer require --prefer-dist matvik/yii2-model-gallery "*"
 ```
 
 or add
@@ -29,7 +27,5 @@ to the require section of your `composer.json` file.
 Usage
 -----
 
-Once the extension is installed, simply use it in your code by  :
-
-```php
-<?= \matvik\modelGallery\AutoloadExample::widget(); ?>```
+Documentation is at:
+Ukrainian - [docs/GUIDE-uk.md](https://github.com/Matvik/yii2-model-gallery/blob/master/docs/GUIDE-uk.md.
