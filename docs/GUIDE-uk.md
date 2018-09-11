@@ -6,7 +6,8 @@ Yii 2 model images gallery
 
 ## Мінімальні налаштування
 Перш за все необхідно згенерувати таблицю у базі даних. Скопіюйте або унаслідуйте [міграцію](https://github.com/Matvik/yii2-model-gallery/blob/master/src/migrations/m180329_215546_create_gallery_images_table.php), після цього виконайте консольну команду `yii migrate`. Або ж Ви можете створити відповідну таблицю у базі вручну.
-Далі необхідно додати основну поведінку галереї до моделі ActiveRecord:
+
+Тепер необхідно додати основну поведінку галереї до моделі ActiveRecord:
 ```php
 use matvik\modelGallery\GalleryBehavior;
 ...
