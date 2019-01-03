@@ -226,6 +226,14 @@ jQuery(function () {
                     .replace(new RegExp('{id}', 'g'), item.id);
             list.append(itemContent);
         });
+        
+        var buttonsWrapper = list.closest(":has(.buttons-wrapper)")
+                .find(".buttons-wrapper");
+        if (data.length > 0) {
+            buttonsWrapper.show();
+        } else {
+            buttonsWrapper.hide();
+        }
     }
 
     /**

@@ -36,13 +36,11 @@ Sortable::widget([
     </li>
 </div>
 
-<?php if (count($items) > 0) : ?>
-<div class="buttons-wrapper">
+<div class="buttons-wrapper" <?= count($items) == 0 ? 'style="display: none;"' : ''?>>
     <button type="button" class="ajax-gallery-delete-button red-button"><?= $messages['buttonLabelDelete'] ?></button>
     <button type="button" class="ajax-gallery-select-all-button"><?= $messages['buttonLabelSelectAll'] ?></button>
     <button type="button" class="ajax-gallery-clear-selection-button yellow-button"><?= $messages['buttonLabelDeselectAll'] ?></button>
 </div>
-<?php endif ?>
 
 <div id="gallery-ajax-widget-drop-area">
     <h3><?= $messages['dropAreaLabel'] ?></h3>
