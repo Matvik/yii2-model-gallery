@@ -1,6 +1,5 @@
 <?php
 
-use yii\widgets\Pjax;
 use yii\jui\Sortable;
 use matvik\modelGallery\GalleryAjaxAction;
 
@@ -10,8 +9,6 @@ use matvik\modelGallery\GalleryAjaxAction;
 $messages = $this->context->messages;
 
 ?>
-
-<?php Pjax::begin(['id' => 'gallery-ajax-widget-pjax', 'timeout' => 10000]); ?>
 <?=
 Sortable::widget([
     'items' => $items,
@@ -30,6 +27,15 @@ Sortable::widget([
 ])
 
 ?>
+<!-- Imageitem template (for AJAX response) -->
+<div class="gallery-item-template-container" style="display: none;">
+    <li class="ui-state-default ajax-gallery-item ui-sortable-handle" data-image-id="{id}">
+    <?= $this->context->render('_ajaxWidgetItem', [
+        'image' => false,
+    ]) ?>
+    </li>
+</div>
+
 <?php if (count($items) > 0) : ?>
 <div class="buttons-wrapper">
     <button type="button" class="ajax-gallery-delete-button red-button"><?= $messages['buttonLabelDelete'] ?></button>
@@ -37,8 +43,6 @@ Sortable::widget([
     <button type="button" class="ajax-gallery-clear-selection-button yellow-button"><?= $messages['buttonLabelDeselectAll'] ?></button>
 </div>
 <?php endif ?>
-<?php Pjax::end(); ?>
-
 
 <div id="gallery-ajax-widget-drop-area">
     <h3><?= $messages['dropAreaLabel'] ?></h3>
@@ -51,5 +55,4 @@ Sortable::widget([
 		<progress class="upload-progress" value="0" max="100" style="display: none;"></progress>
 		<h4 id="gallery-ajax-widget-saving-loader" style="display: none;"><?= $messages['loaderSaving'] ?></h4>
     </div>
-    
 </div>

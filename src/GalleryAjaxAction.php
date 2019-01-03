@@ -78,10 +78,10 @@ class GalleryAjaxAction extends Action
         
         switch ($action) {
             case self::ACTION_UPLOAD_IMAGES:
-                return ['success' => $this->upload($model)];
+                return ['success' => $this->upload($model), 'images' => $this->getImagesData($model)];
             
             case self::ACTION_DELETE_IMAGES:
-                return ['success' => $this->delete($model)];
+                return ['success' => $this->delete($model), 'images' => $this->getImagesData($model)];
                 
             case self::ACTION_CHANGE_IMAGES_ORDER:
                 return ['success' => $this->order($model)];
@@ -146,5 +146,23 @@ class GalleryAjaxAction extends Action
         } else {
             return false;
         }
+    }
+    
+    /**
+     * Getting images data for alax response
+     * @param yii\base\Model $model
+     * @return array
+     */
+    protected function getImagesData($model)
+    {
+        unset($model->galleryImages); // to load actual images
+        $items = [];
+        foreach ($model->galleryImages as $image) {
+            $items[] = [
+                'id' => $image->id,
+                'preview' => $image->getUrl('preview'),
+            ];
+        }
+        return $items;
     }
 }

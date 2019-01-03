@@ -116,7 +116,7 @@ class GalleryAjaxWidget extends Widget
         }
 
         return $this->render('ajaxWidget', [
-                'items' => $items,
+            'items' => $items,
         ]);
     }
 }

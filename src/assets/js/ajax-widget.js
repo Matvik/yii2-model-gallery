@@ -32,10 +32,15 @@ jQuery(function () {
                     savingLoader.show();
                 }
             },
-            onUploadSuccess: function () {
+            onUploadSuccess: function (id, data) {
                 progress.val(0);
                 savingLoader.hide();
-                jQuery.pjax.reload({container: "#gallery-ajax-widget-pjax"});
+                if (data.success === false) {
+                    var errorMessage = list.data("messages").errorUpload;
+                    jqAlert(errorMessage, 'red');
+                    return;
+                }
+                refreshItems(list, data.images);
             },
             onUploadError: function () {
                 savingLoader.hide();
@@ -47,12 +52,12 @@ jQuery(function () {
                 progress.hide();
                 savingLoader.hide();
             },
-            onDragEnter: function(){
-              this.addClass('active');
+            onDragEnter: function () {
+                this.addClass('active');
             },
-            onDragLeave: function(){
-              this.removeClass('active');
-            },
+            onDragLeave: function () {
+                this.removeClass('active');
+            }
         });
     });
 
@@ -128,7 +133,7 @@ jQuery(function () {
                             data: {galleryData: data},
                             success: function (result) {
                                 if (result.success) {
-                                    jQuery.pjax.reload({container: "#gallery-ajax-widget-pjax"});
+                                    refreshItems(list, result.images);
                                 } else {
                                     jqAlert(messages.errorDelete, 'red');
                                 }
@@ -145,13 +150,13 @@ jQuery(function () {
             }
         });
     });
-    
+
     /**
      * Change ckeckbox color
      */
     jQuery(document).on("change", ".ajax-gallery-list .delete-image-checkbox", function (event, ui) {
         var item = jQuery(this).closest(".ajax-gallery-item");
-        if(jQuery(this).is(':checked')) {
+        if (jQuery(this).is(':checked')) {
             item.addClass("checked");
         } else {
             item.removeClass("checked");
@@ -193,17 +198,34 @@ jQuery(function () {
         var list = uploader.closest(":has(.ajax-gallery-list)").find(".ajax-gallery-list");
         var items = list.find(".ajax-gallery-item");
         var maxCount = list.data("max-files-total");
-        
+
         if (maxCount <= 0) {
             return true;
         }
-        
+
         var newFilesCount = uploader.find("input[type=file]")[0].files.length;
         if ((items.length + newFilesCount) > maxCount) {
             return false;
         } else {
             return true;
         }
+    }
+
+    /**
+     * Loading new image items into widget
+     * @param {type} list
+     * @param {array} data
+     * @returns {undefined}
+     */
+    function refreshItems(list, data) {
+        var template = list.closest(":has(.gallery-item-template-container)")
+                .find(".gallery-item-template-container").html();
+        list.empty();
+        jQuery.each(data, function (index, item) {
+            var itemContent = template.replace(new RegExp('{preview}', 'g'), item.preview)
+                    .replace(new RegExp('{id}', 'g'), item.id);
+            list.append(itemContent);
+        });
     }
 
     /**
