@@ -222,7 +222,7 @@ jQuery(function () {
                 .find(".gallery-item-template-container").html();
         list.empty();
         jQuery.each(data, function (index, item) {
-            var itemContent = template.replace(new RegExp('{preview}', 'g'), item.preview)
+            var itemContent = template.replace(new RegExp('#{preview}', 'g'), item.preview)
                     .replace(new RegExp('{id}', 'g'), item.id);
             list.append(itemContent);
         });

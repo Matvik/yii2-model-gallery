@@ -5,7 +5,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $image matvik\modelGallery\Image */
 ?>
-<?= Html::img($image ? $image->getUrl('preview') : '{preview}', [
+<?= Html::img($image ? $image->getUrl('preview') : '#{preview}', [
     'width' => $this->context->imageWidth ? $this->context->imageWidth : false,
     'height' => $this->context->imageHeight ? $this->context->imageHeight : false,
 ]) ?>
