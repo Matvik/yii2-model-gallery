@@ -18,5 +18,6 @@ class GalleryFormWidgetAsset extends AssetBundle
     public $depends = [
         'yii\web\JqueryAsset',
         'yii\jui\JuiAsset',
+        'matvik\modelGallery\JqueryConfirmAsset',
     ];
 }
