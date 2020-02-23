@@ -4,6 +4,10 @@
     "type": "yii2-extension",
     "keywords": ["yii2","extension","gallery","images","widget","behavior","ajax","form"],
     "license": "MIT",
+    "support": {
+        "issues": "https://github.com/Matvik/yii2-model-gallery/issues",
+        "source": "https://github.com/Matvik/yii2-model-gallery"
+    },
     "authors": [
         {
             "name": "Matviy Shkotnyar",
