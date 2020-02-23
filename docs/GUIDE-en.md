@@ -1,11 +1,11 @@
 Yii 2 model images gallery
 =================================================
 
-This extension includes behaviors and widgets for implementing an image gallery of an ActiveRecord model. Uploading images is possible both in the widget, which is part of the standard create/update model form, and with a separate AJAX widget.
-Supports interactive reorder (drag and drop) and deletion of images.
+This extension includes behaviors and widgets for implementing image gallery of an ActiveRecord model. Uploading images is possible both in the widget, which is part of the standard create/update model form, and with a separate AJAX widget.
+Supports interactive reorder (drag and drop) and deleting of images.
 
 ## Minimum settings
-First you need to generate a table in the database. Copy or inherit [migration](https://github.com/Matvik/yii2-model-gallery/blob/master/src/migrations/m180329_215546_create_gallery_images_table.php) then execute `yii migrate` console command. Alternatively, you can create a this table in the database manually.
+First you need to generate a table in the database. Copy or inherit [migration](https://github.com/Matvik/yii2-model-gallery/blob/master/src/migrations/m180329_215546_create_gallery_images_table.php), then execute `yii migrate` console command. Alternatively, you can create this table in the database manually.
 
 Then you need to add basic behavior to the ActiveRecord model:
 ```php
@@ -25,10 +25,10 @@ public function behaviors()
         ];
     }
 ```
-where `category` is the category of images in database (for example, 'post', 'user', etc., for different ActiveRecord models you need to set a separate category), `basePath` and `baseUrl` - directory and URL for of this category.
+where `category` is the category of images in database (for example, 'post', 'user', etc. For different ActiveRecord models you need to set a separate category), `basePath` and `baseUrl` - directory and URL for of this category.
 
 Next we have two options:
-### Images management widget as part of regular form
+### Images management widget as a part of standart Yii 2 form
 ![Form Widget](https://raw.githubusercontent.com/Matvik/yii2-model-gallery/master/docs/form-widget.png)
 
 Saving, deleting and reordering images performs after the form has been submited.
@@ -97,7 +97,7 @@ public function actions()
 ```
 where `modelClass` - name of the ActiveRecord model class to which gallery behavior is added.
 
-> As with all requests that change server status, it is correctly to set only the POST request method for this action.
+> As with all requests that change server status, it is correctly to allow only the POST request method for this action.
 
 ## Getting images
 Relarion to all images:
@@ -113,7 +113,7 @@ $model->galleryImageFirst;
 
  > Both relations can be obtained by eager loading method.
  
-  From `\matvik\modelGallery\Image` object can be recieved URLs of different image sizes (see below):
+  From `\matvik\modelGallery\Image` object we can get URLs of different image sizes (see below):
   ```php
   $image->getUrl('preview');
   ```
@@ -203,7 +203,7 @@ public function behaviors()
                 ],
                 // Default images for different sizes. Shown when
                 // method getGalleryImageFirstUrl() is used, but there are no images attached to this model.
-                // If not specified, a default image from the this extension is taken.
+                // If not specified, a default image from this extension is taken.
                 'defaultImages' => [
                     'preview' => Yii::getAlias('@web/images/default.png'),
                     'small' => 'https://domain.com/logo.png',
@@ -229,7 +229,7 @@ public function behaviors()
                 // maximum total number of images that can be attached to the model.
                 // Defaults to the 0 (unlimited)
                 'maxFilesTotal' => 30,
-                // automatically call the saveGallery () method after saving the primary Active Record model.
+                // automatically call the saveGallery() method after saving the primary Active Record model.
                 // This only works if the form model and the main Active Record model are the same. Defaults to true.
                 'autosave' => false,
             ],
