@@ -48,6 +48,7 @@ public function behaviors()
     }
 ```
 And the widget itself:
+> Do not forget to add `'enctype' => 'multipart/form-data'` to the form options
 ```php
 use matvik\modelGallery\GalleryFormWidget;
 ...
