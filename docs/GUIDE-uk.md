@@ -48,6 +48,7 @@ public function behaviors()
     }
 ```
 І сам віджет:
+> Не забудьте додати `'enctype' => 'multipart/form-data'` в опції форми
 ```php
 use matvik\modelGallery\GalleryFormWidget;
 ...
